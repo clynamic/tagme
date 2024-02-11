@@ -1,0 +1,11 @@
+.page {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--page-width);
+  background: var(--page-color);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 8px;
+}

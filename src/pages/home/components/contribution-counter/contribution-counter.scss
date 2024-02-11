@@ -1,0 +1,28 @@
+.contribution-counter {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  grid-column-gap: 16px;
+  padding: 16px;
+  background: #ffffff02;
+  border-radius: 8px;
+
+  .contribution-counter__changes {
+    grid-row: 1/3;
+    display: flex;
+    justify-content: flex-end;
+
+    font-size: 2.75rem;
+    line-height: 80%;
+  }
+
+  .contribution-counter__users {
+    font-size: 1.25rem;
+    line-height: 80%;
+    display: flex;
+  }
+
+  .contribution-counter__projects {
+    font-size: 1.25rem;
+    line-height: 80%;
+  }
+}

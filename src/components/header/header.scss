@@ -1,0 +1,103 @@
+// TODO: proof read this file
+
+header {
+  display: grid;
+  grid-template-columns: min-content auto;
+  max-width: var(--page-width);
+  width: 100%;
+  margin: 0 auto 8px;
+  position: relative;
+
+  .header-logo {
+    grid-column: 1/2;
+    grid-row: 1/3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--page-color);
+    padding: 0px 8px;
+    border-radius: 8px 0 6px 6px;
+
+    .header-logo-link {
+      font-family: Pacifico, cursive;
+      position: relative;
+      display: block;
+      font-size: 2.5rem;
+      line-height: 2.5rem;
+      text-shadow: 0 0 5px black;
+      outline: 0 !important;
+    }
+  }
+
+  .header-search {
+    grid-column: 2/3;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    background: var(--page-color);
+    border-radius: 0 8px 6px 0;
+    height: 2rem;
+  }
+
+  nav {
+    display: inline-grid;
+    grid-template-columns: auto max-content;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 8px;
+
+    .header-link {
+      display: inline-block;
+      background: var(--page-button-color);
+      margin: 0 4px;
+      padding: 2px 8px;
+      border-radius: 0 0 6px 6px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:hover {
+        background: var(--page-color);
+      }
+    }
+  }
+
+  .side-links {
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    right: -1.25rem;
+    top: 68px;
+
+    & > a {
+      background: var(--page-button-color);
+      width: 1.25rem;
+      height: 1.75rem;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.8rem;
+      cursor: pointer;
+      position: relative;
+
+      &:hover {
+        background: var(--page-button-color);
+      }
+
+      &[enabled="false"]::before {
+        content: "/";
+        position: absolute;
+        color: red;
+        font-weight: 800;
+        font-size: 1.25rem;
+        transform: rotate(15deg);
+      }
+    }
+  }
+}
