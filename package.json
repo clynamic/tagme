@@ -7,16 +7,21 @@
     "build": "tsc && vite build",
     "dev": "vite",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate-client": "rimraf src/api/generated && rapini react-query v5 -p swagger.json -n tag-me-api -o src/api/generated"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@tanstack/react-query": "^5.20.1",
+    "axios": "^1.6.7",
+    "rapini": "^3.5.0",
     "react": "^18.2.0",
     "react-countup": "^6.5.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.3",
+    "tag-me-api": "file:src/api/generated",
     "trianglify": "^2.0.0"
   },
   "devDependencies": {
