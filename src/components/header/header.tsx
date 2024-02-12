@@ -28,35 +28,35 @@ export const Header = () => {
 
       <nav>
         <div className="nav-main">
-          <a href="/projects" className="header-link">
+          <Link to="/projects" className="header-link">
             All Projects
-          </a>
+          </Link>
           {isPrivileged && (
-            <a href="/projects/new" className="header-link">
+            <Link to="/projects/new" className="header-link">
               New Project
-            </a>
+            </Link>
           )}
-          <a href="/users" className="header-link">
+          <Link to="/users" className="header-link">
             Users
-          </a>
-          <a href="/comments" className="header-link">
+          </Link>
+          <Link to="/comments" className="header-link">
             Comments
-          </a>
+          </Link>
         </div>
         <div className="nav-auth">
           {isLoggedIn ? (
             <>
-              <a href={`/users/${userID}`} className="header-link">
+              <Link to={`/users/${userID}`} className="header-link">
                 {username}
-              </a>
-              <a href="/auth/logout" className="header-link" id="logout-link">
+              </Link>
+              <Link to="/auth/logout" className="header-link" id="logout-link">
                 Logout
-              </a>
+              </Link>
             </>
           ) : (
-            <a href="/auth/login" className="header-link header-right">
+            <Link to="/auth/login" className="header-link header-right">
               Login
-            </a>
+            </Link>
           )}
         </div>
       </nav>
