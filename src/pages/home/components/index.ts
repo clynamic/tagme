@@ -1,2 +1,2 @@
-export { AppDescription } from "./app-description";
-export { ContributionCounter } from "./contribution-counter";
+export * from "./app-description";
+export * from "./contribution-counter";

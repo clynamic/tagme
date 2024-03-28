@@ -162,10 +162,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/User"
-                  }
+                  "$ref": "#/components/schemas/UserPage"
                 }
               }
             }
@@ -427,10 +424,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Project"
-                  }
+                  "$ref": "#/components/schemas/ProjectPage"
                 }
               }
             }
@@ -609,10 +603,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ProjectVersion"
-                  }
+                  "$ref": "#/components/schemas/ProjectVersionPage"
                 }
               }
             }
@@ -801,10 +792,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Comment"
-                  }
+                  "$ref": "#/components/schemas/CommentPage"
                 }
               }
             }
@@ -992,10 +980,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Contribution"
-                  }
+                  "$ref": "#/components/schemas/ContributionPage"
                 }
               }
             }
@@ -1168,10 +1153,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Interaction"
-                  }
+                  "$ref": "#/components/schemas/InteractionPage"
                 }
               }
             }
@@ -1216,6 +1198,30 @@
           "strikes": {
             "type": "integer",
             "format": "int32"
+          }
+        }
+      },
+      "UserPage": {
+        "required": ["items", "page", "pages", "total"],
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
           }
         }
       },
@@ -1314,6 +1320,30 @@
           "version": {
             "type": "integer",
             "format": "int32"
+          }
+        }
+      },
+      "ProjectPage": {
+        "required": ["items", "page", "pages", "total"],
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
           }
         }
       },
@@ -1479,6 +1509,30 @@
           }
         }
       },
+      "ProjectVersionPage": {
+        "required": ["items", "page", "pages", "total"],
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectVersion"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
       "Comment": {
         "required": ["content", "createdAt", "id", "projectId", "userId"],
         "type": "object",
@@ -1511,6 +1565,30 @@
           "userId": {
             "type": "integer",
             "format": "int32"
+          }
+        }
+      },
+      "CommentPage": {
+        "required": ["items", "page", "pages", "total"],
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Comment"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
           }
         }
       },
@@ -1577,6 +1655,30 @@
           }
         }
       },
+      "ContributionPage": {
+        "required": ["items", "page", "pages", "total"],
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Contribution"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
       "ContributionRequest": {
         "required": ["postId", "projectId", "userId"],
         "type": "object",
@@ -1621,6 +1723,30 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          }
+        }
+      },
+      "InteractionPage": {
+        "required": ["items", "page", "pages", "total"],
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Interaction"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
           }
         }
       }

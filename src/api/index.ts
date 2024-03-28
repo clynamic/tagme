@@ -9,6 +9,8 @@ const config = initialize(
 
 const allProps = { ...config.requests, ...config.queries, ...config.mutations };
 
+export * from "./generated";
+
 export const {
   user,
   users,

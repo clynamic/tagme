@@ -1,7 +1,7 @@
 import { AppDescription, ContributionCounter } from "./components";
 import { Subtitle, Page, PageTitle } from "../../components";
 
-export const Home = () => {
+export const HomePage = () => {
   return (
     <Page>
       <PageTitle>TagMe! - E621 Tagging Project Assistant</PageTitle>

@@ -1,2 +1,2 @@
-export { Page } from "./page";
-export { PageTitle } from "./page-title";
+export * from "./page-title";
+export * from "./page";

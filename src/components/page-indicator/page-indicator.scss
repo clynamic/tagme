@@ -1,0 +1,28 @@
+.page-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 12px;
+
+  .page-number {
+    background-color: unset;
+    color: var(--primary-color);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+
+    &:hover {
+      color: var(--primary-hover-color);
+    }
+
+    &.active {
+      color: var(--text-color);
+    }
+
+    &[disabled] {
+      opacity: 0;
+      cursor: unset;
+    }
+  }
+}

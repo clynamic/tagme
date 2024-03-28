@@ -1,1 +1,1 @@
-export { Subtitle } from "./subtitle";
+export * from "./subtitle";

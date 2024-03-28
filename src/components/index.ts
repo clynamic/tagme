@@ -1,6 +1,9 @@
-export { Background } from "./background";
-export { Footer } from "./footer";
-export { Header } from "./header";
-export { Page, PageTitle } from "./page";
-export { Search } from "./search";
-export { Subtitle } from "./subtitle";
+export * from "./background";
+export * from "./error-icon";
+export * from "./footer";
+export * from "./header";
+export * from "./loading-icon";
+export * from "./page";
+export * from "./page-indicator";
+export * from "./search";
+export * from "./subtitle";

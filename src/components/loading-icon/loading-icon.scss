@@ -1,0 +1,30 @@
+.loading-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+
+  span {
+    animation: loading04 0.7s infinite;
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i + 1}) {
+        animation-delay: #{$i * 0.1}s;
+      }
+    }
+
+    font-family: Pacifico, cursive;
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+    outline: 0 !important;
+  }
+}
+@keyframes loading04 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(15px);
+  }
+}

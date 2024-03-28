@@ -1,1 +1,1 @@
-export { AppDescription } from "./app-description";
+export * from "./app-description";

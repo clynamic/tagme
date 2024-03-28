@@ -1,1 +1,1 @@
-export { ContributionCounter } from "./contribution-counter";
+export * from "./contribution-counter";

@@ -11,6 +11,12 @@ export type User = {
     rank: UserRank;
     strikes: number;
 };
+export type UserPage = {
+    items: User[];
+    page: number;
+    pages: number;
+    total: number;
+};
 export type ProjectOption = {
     add: string[];
     name: string;
@@ -31,6 +37,12 @@ export type Project = {
     updatedAt?: string | null;
     userId: number;
     version: number;
+};
+export type ProjectPage = {
+    items: Project[];
+    page: number;
+    pages: number;
+    total: number;
 };
 export type ProjectRequest = {
     conditionals?: string[];
@@ -66,6 +78,12 @@ export type ProjectVersion = {
     tags: string[];
     version: number;
 };
+export type ProjectVersionPage = {
+    items: ProjectVersion[];
+    page: number;
+    pages: number;
+    total: number;
+};
 export type Comment = {
     content: string;
     createdAt: string;
@@ -74,6 +92,12 @@ export type Comment = {
     projectId: number;
     updatedAt?: string | null;
     userId: number;
+};
+export type CommentPage = {
+    items: Comment[];
+    page: number;
+    pages: number;
+    total: number;
 };
 export type CommentRequest = {
     content: string;
@@ -91,6 +115,12 @@ export type Contribution = {
     projectVersion: number;
     userId: number;
 };
+export type ContributionPage = {
+    items: Contribution[];
+    page: number;
+    pages: number;
+    total: number;
+};
 export type ContributionRequest = {
     postId: number;
     projectId: number;
@@ -103,6 +133,12 @@ export type Interaction = {
     origin: string;
     response: number;
     userId?: number | null;
+};
+export type InteractionPage = {
+    items: Interaction[];
+    page: number;
+    pages: number;
+    total: number;
 };
 export type AxiosConfig = {
     paramsSerializer?: AxiosRequestConfig["paramsSerializer"];
@@ -176,7 +212,7 @@ function makeRequests(axios: AxiosInstance, config?: AxiosConfig) {
             method: "delete",
             url: `/users/${id}`
         }).then(res => res.data),
-        users: (page?: number, size?: number, sort?: string, order?: string) => axios.request<User[]>({
+        users: (page?: number, size?: number, sort?: string, order?: string) => axios.request<UserPage>({
             method: "get",
             url: `/users`,
             params: {
@@ -215,7 +251,7 @@ function makeRequests(axios: AxiosInstance, config?: AxiosConfig) {
                 "Content-Type": "application/json"
             }
         }).then(res => res.data),
-        projects: (page?: number, size?: number, sort?: string, order?: "ASC" | "DESC" | "ASC_NULLS_FIRST" | "DESC_NULLS_FIRST" | "ASC_NULLS_LAST" | "DESC_NULLS_LAST", user?: number) => axios.request<Project[]>({
+        projects: (page?: number, size?: number, sort?: string, order?: "ASC" | "DESC" | "ASC_NULLS_FIRST" | "DESC_NULLS_FIRST" | "ASC_NULLS_LAST" | "DESC_NULLS_LAST", user?: number) => axios.request<ProjectPage>({
             method: "get",
             url: `/projects`,
             params: {
@@ -243,7 +279,7 @@ function makeRequests(axios: AxiosInstance, config?: AxiosConfig) {
             method: "get",
             url: `/project-versions/${id}`
         }).then(res => res.data),
-        projectVersions: (page?: number, size?: number, sort?: string, order?: "ASC" | "DESC" | "ASC_NULLS_FIRST" | "DESC_NULLS_FIRST" | "ASC_NULLS_LAST" | "DESC_NULLS_LAST", project?: number) => axios.request<ProjectVersion[]>({
+        projectVersions: (page?: number, size?: number, sort?: string, order?: "ASC" | "DESC" | "ASC_NULLS_FIRST" | "DESC_NULLS_FIRST" | "ASC_NULLS_LAST" | "DESC_NULLS_LAST", project?: number) => axios.request<ProjectVersionPage>({
             method: "get",
             url: `/project-versions`,
             params: {
@@ -271,7 +307,7 @@ function makeRequests(axios: AxiosInstance, config?: AxiosConfig) {
                 "Content-Type": "application/json"
             }
         }).then(res => res.data),
-        comments: (page?: number, size?: number, sort?: string, order?: "ASC" | "DESC" | "ASC_NULLS_FIRST" | "DESC_NULLS_FIRST" | "ASC_NULLS_LAST" | "DESC_NULLS_LAST", user?: number, project?: number) => axios.request<Comment[]>({
+        comments: (page?: number, size?: number, sort?: string, order?: "ASC" | "DESC" | "ASC_NULLS_FIRST" | "DESC_NULLS_FIRST" | "ASC_NULLS_LAST" | "DESC_NULLS_LAST", user?: number, project?: number) => axios.request<CommentPage>({
             method: "get",
             url: `/comments`,
             params: {
@@ -300,7 +336,7 @@ function makeRequests(axios: AxiosInstance, config?: AxiosConfig) {
             method: "get",
             url: `/contributions/${id}`
         }).then(res => res.data),
-        contributions: (page?: number, size?: number, sort?: string, order?: "ASC" | "DESC" | "ASC_NULLS_FIRST" | "DESC_NULLS_FIRST" | "ASC_NULLS_LAST" | "DESC_NULLS_LAST", user?: number, project?: number) => axios.request<Contribution[]>({
+        contributions: (page?: number, size?: number, sort?: string, order?: "ASC" | "DESC" | "ASC_NULLS_FIRST" | "DESC_NULLS_FIRST" | "ASC_NULLS_LAST" | "DESC_NULLS_LAST", user?: number, project?: number) => axios.request<ContributionPage>({
             method: "get",
             url: `/contributions`,
             params: {
@@ -325,7 +361,7 @@ function makeRequests(axios: AxiosInstance, config?: AxiosConfig) {
             method: "get",
             url: `/interactions/${id}`
         }).then(res => res.data),
-        interactions: (page?: number, size?: number, sort?: string, order?: "ASC" | "DESC" | "ASC_NULLS_FIRST" | "DESC_NULLS_FIRST" | "ASC_NULLS_LAST" | "DESC_NULLS_LAST", endpoint?: string, origin?: string, user?: number, response?: number) => axios.request<Interaction[]>({
+        interactions: (page?: number, size?: number, sort?: string, order?: "ASC" | "DESC" | "ASC_NULLS_FIRST" | "DESC_NULLS_FIRST" | "ASC_NULLS_LAST" | "DESC_NULLS_LAST", endpoint?: string, origin?: string, user?: number, response?: number) => axios.request<InteractionPage>({
             method: "get",
             url: `/interactions`,
             params: {
