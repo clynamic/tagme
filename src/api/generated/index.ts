@@ -183,7 +183,7 @@ export const queryKeys = {
     user: (id: number) => ["user", id] as const,
     users: (page?: number, size?: number, sort?: string, order?: string) => ["users", nullIfUndefined(page), nullIfUndefined(size), nullIfUndefined(sort), nullIfUndefined(order)] as const,
     project: (id: number) => ["project", id] as const,
-    projects: (page?: number, size?: number, sort?: string, order?: "ASC" | "DESC" | "ASC_NULLS_FIRST" | "DESC_NULLS_FIRST" | "ASC_NULLS_LAST" | "DESC_NULLS_LAST", user?: number) => ["projects", nullIfUndefined(page), nullIfUndefined(size), nullIfUndefined(sort), nullIfUndefined(order), nullIfUndefined(user)] as const,
+    projects: (page?: number, size?: number, sort?: string, order?: "ASC" | "DESC" | "ASC_NULLS_FIRST" | "DESC_NULLS_FIRST" | "ASC_NULLS_LAST" | "DESC_NULLS_LAST", user?: number, name?: string, description?: string, guidelines?: string, tags?: string, search?: string) => ["projects", nullIfUndefined(page), nullIfUndefined(size), nullIfUndefined(sort), nullIfUndefined(order), nullIfUndefined(user), nullIfUndefined(name), nullIfUndefined(description), nullIfUndefined(guidelines), nullIfUndefined(tags), nullIfUndefined(search)] as const,
     projectVersion: (id: number) => ["projectVersion", id] as const,
     projectVersions: (page?: number, size?: number, sort?: string, order?: "ASC" | "DESC" | "ASC_NULLS_FIRST" | "DESC_NULLS_FIRST" | "ASC_NULLS_LAST" | "DESC_NULLS_LAST", project?: number) => ["projectVersions", nullIfUndefined(page), nullIfUndefined(size), nullIfUndefined(sort), nullIfUndefined(order), nullIfUndefined(project)] as const,
     comment: (id: number) => ["comment", id] as const,
@@ -251,7 +251,7 @@ function makeRequests(axios: AxiosInstance, config?: AxiosConfig) {
                 "Content-Type": "application/json"
             }
         }).then(res => res.data),
-        projects: (page?: number, size?: number, sort?: string, order?: "ASC" | "DESC" | "ASC_NULLS_FIRST" | "DESC_NULLS_FIRST" | "ASC_NULLS_LAST" | "DESC_NULLS_LAST", user?: number) => axios.request<ProjectPage>({
+        projects: (page?: number, size?: number, sort?: string, order?: "ASC" | "DESC" | "ASC_NULLS_FIRST" | "DESC_NULLS_FIRST" | "ASC_NULLS_LAST" | "DESC_NULLS_LAST", user?: number, name?: string, description?: string, guidelines?: string, tags?: string, search?: string) => axios.request<ProjectPage>({
             method: "get",
             url: `/projects`,
             params: {
@@ -259,7 +259,12 @@ function makeRequests(axios: AxiosInstance, config?: AxiosConfig) {
                 ...(size !== undefined ? { size } : undefined),
                 ...(sort !== undefined ? { sort } : undefined),
                 ...(order !== undefined ? { order } : undefined),
-                ...(user !== undefined ? { user } : undefined)
+                ...(user !== undefined ? { user } : undefined),
+                ...(name !== undefined ? { name } : undefined),
+                ...(description !== undefined ? { description } : undefined),
+                ...(guidelines !== undefined ? { guidelines } : undefined),
+                ...(tags !== undefined ? { tags } : undefined),
+                ...(search !== undefined ? { search } : undefined)
             },
             paramsSerializer: config?.paramsSerializer
         }).then(res => res.data),
@@ -385,7 +390,7 @@ function makeQueries(requests: Requests) {
         useUser: (id: number, options?: Omit<UseQueryOptions<Response<"user">, unknown, Response<"user">, ReturnType<QueryKeys["user"]>>, "queryKey" | "queryFn">): UseQueryResult<Response<"user">, unknown> => useQuery({ queryKey: queryKeys.user(id), queryFn: () => requests.user(id), ...options }),
         useUsers: (page?: number, size?: number, sort?: string, order?: string, options?: Omit<UseQueryOptions<Response<"users">, unknown, Response<"users">, ReturnType<QueryKeys["users"]>>, "queryKey" | "queryFn">): UseQueryResult<Response<"users">, unknown> => useQuery({ queryKey: queryKeys.users(page, size, sort, order), queryFn: () => requests.users(page, size, sort, order), ...options }),
         useProject: (id: number, options?: Omit<UseQueryOptions<Response<"project">, unknown, Response<"project">, ReturnType<QueryKeys["project"]>>, "queryKey" | "queryFn">): UseQueryResult<Response<"project">, unknown> => useQuery({ queryKey: queryKeys.project(id), queryFn: () => requests.project(id), ...options }),
-        useProjects: (page?: number, size?: number, sort?: string, order?: "ASC" | "DESC" | "ASC_NULLS_FIRST" | "DESC_NULLS_FIRST" | "ASC_NULLS_LAST" | "DESC_NULLS_LAST", user?: number, options?: Omit<UseQueryOptions<Response<"projects">, unknown, Response<"projects">, ReturnType<QueryKeys["projects"]>>, "queryKey" | "queryFn">): UseQueryResult<Response<"projects">, unknown> => useQuery({ queryKey: queryKeys.projects(page, size, sort, order, user), queryFn: () => requests.projects(page, size, sort, order, user), ...options }),
+        useProjects: (page?: number, size?: number, sort?: string, order?: "ASC" | "DESC" | "ASC_NULLS_FIRST" | "DESC_NULLS_FIRST" | "ASC_NULLS_LAST" | "DESC_NULLS_LAST", user?: number, name?: string, description?: string, guidelines?: string, tags?: string, search?: string, options?: Omit<UseQueryOptions<Response<"projects">, unknown, Response<"projects">, ReturnType<QueryKeys["projects"]>>, "queryKey" | "queryFn">): UseQueryResult<Response<"projects">, unknown> => useQuery({ queryKey: queryKeys.projects(page, size, sort, order, user, name, description, guidelines, tags, search), queryFn: () => requests.projects(page, size, sort, order, user, name, description, guidelines, tags, search), ...options }),
         useProjectVersion: (id: number, options?: Omit<UseQueryOptions<Response<"projectVersion">, unknown, Response<"projectVersion">, ReturnType<QueryKeys["projectVersion"]>>, "queryKey" | "queryFn">): UseQueryResult<Response<"projectVersion">, unknown> => useQuery({ queryKey: queryKeys.projectVersion(id), queryFn: () => requests.projectVersion(id), ...options }),
         useProjectVersions: (page?: number, size?: number, sort?: string, order?: "ASC" | "DESC" | "ASC_NULLS_FIRST" | "DESC_NULLS_FIRST" | "ASC_NULLS_LAST" | "DESC_NULLS_LAST", project?: number, options?: Omit<UseQueryOptions<Response<"projectVersions">, unknown, Response<"projectVersions">, ReturnType<QueryKeys["projectVersions"]>>, "queryKey" | "queryFn">): UseQueryResult<Response<"projectVersions">, unknown> => useQuery({ queryKey: queryKeys.projectVersions(page, size, sort, order, project), queryFn: () => requests.projectVersions(page, size, sort, order, project), ...options }),
         useComment: (id: number, options?: Omit<UseQueryOptions<Response<"comment">, unknown, Response<"comment">, ReturnType<QueryKeys["comment"]>>, "queryKey" | "queryFn">): UseQueryResult<Response<"comment">, unknown> => useQuery({ queryKey: queryKeys.comment(id), queryFn: () => requests.comment(id), ...options }),

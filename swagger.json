@@ -415,6 +415,46 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Matches names containing the value",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "Matches descriptions containing the value",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "guidelines",
+            "in": "query",
+            "description": "Matches guidelines containing the value",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "description": "Matches tags which contain these tags",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Matches names, descriptions, guidelines containing the value",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {

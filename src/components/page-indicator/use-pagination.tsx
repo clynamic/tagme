@@ -28,7 +28,7 @@ export const usePagination = () => {
     page: getParam("page") as number | undefined,
     size: getParam("size") as number | undefined,
     sort: getParam("sort") as string | undefined,
-    order: getParam("order") as PaginationParams["order"],
+    order: getParam("order") as PaginationParams["order"] | undefined,
   };
 
   const setPageination = useCallback(

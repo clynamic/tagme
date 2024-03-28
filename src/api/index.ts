@@ -7,8 +7,6 @@ const config = initialize(
   })
 );
 
-const allProps = { ...config.requests, ...config.queries, ...config.mutations };
-
 export * from "./generated";
 
 export const {
@@ -62,4 +60,4 @@ export const {
   useCreateComment,
   useRestoreComment,
   useCreateContribution,
-} = allProps;
+} = { ...config.requests, ...config.queries, ...config.mutations };
